@@ -1,3 +1,6 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/icon.css' %}">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +17,7 @@
         <li><a href="{% url 'search_books' %}"><i class="fas fa-search"></i> Search Books</a></li>
         <li><a href="{% url 'view_books' %}"><i class="fas fa-book"></i> View Books</a></li>
         <li><a href="{% url 'borrowed_books' %}"><i class="fas fa-book-reader"></i> Borrowed Books</a></li>
-        <li><a href="{% url 'home' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        <li><a href="{% url 'index' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
     </ul>
 </nav>
     <main>
