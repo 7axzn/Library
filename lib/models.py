@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+
 
 # Create your models here.
 class Book_Details(models.Model):
@@ -12,10 +14,6 @@ class Book_Details(models.Model):
 
 
 
-    from django.contrib.auth.models import AbstractUser
-from django.db import models
-from django.contrib.auth.models import AbstractUser
-from django.db import models
 
 class CustomUser(AbstractUser):
     USER_TYPES = (

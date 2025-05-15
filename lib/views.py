@@ -100,8 +100,8 @@ def delete_book(request, book_id):
 def borrowed_books(request):
     return render(request, 'user_borrowed_books.html')
 
-def home(request):
-    return render(request, 'user_dashboard.html')
+def index(request):
+    return render(request, 'index.html')
 
 def admin_dashboard(request):
     return render(request, 'admin_dashboard.html')

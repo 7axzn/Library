@@ -17,6 +17,36 @@
             <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
         </ul>
     </nav>
+        <nav>
+      <ul>
+        <li>
+          <a href="{% url 'user_dashboard' %}"
+            ><i class="fas fa-home"></i> Home</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'search_books' %}"
+            ><i class="fas fa-search"></i> Search Books</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'view_books' %}"
+            ><i class="fas fa-book"></i> View Books</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'borrowed_books' %}"
+            ><i class="fas fa-book-reader"></i> Borrowed Books</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'home' %}"
+            ><i class="fas fa-sign-out-alt"></i> Logout</a
+          >
+        </li>
+        
+      </ul>
+    </nav>
     <main>
         <div class="card">
             <h1>Borrow a Book</h1>

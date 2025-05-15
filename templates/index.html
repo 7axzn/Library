@@ -1,0 +1,35 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Library - Home</title>
+     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+<body>
+    <nav>
+        <ul>
+            
+  <li><a href="{% url 'index' %}"><i class="fas fa-home"></i> Home</a></li>
+<li><a href="{% url 'signup' %}"><i class="fas fa-user-plus"></i> Signup</a></li>
+<li><a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+
+        </ul>
+    </nav>
+    <main>
+        <div class="card">
+            <h1>Welcome to the Online Library</h1>
+            <p style="text-align: center; color: #7f8c8d; font-size: 1.2rem;">
+                <i class="fas fa-book" style="color: #e67e22; margin-right: 0.5rem;"></i>
+                Explore a vast collection of books and borrow your favorites with ease!
+            </p>
+        </div>
+    </main>
+    <footer>
+        <p><i class="fas fa-copyright" style="margin-right: 0.5rem;"></i> 2025 Online Library</p>
+    </footer>
+</body>
+</html>
