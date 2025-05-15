@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - Online Library</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../javaScript/project.js"></script>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="{% url 'user_dashboard' %}"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="{% url 'search_books' %}"><i class="fas fa-search"></i> Search Books</a></li>
+        <li><a href="{% url 'view_books' %}"><i class="fas fa-book"></i> View Books</a></li>
+        <li><a href="{% url 'borrowed_books' %}"><i class="fas fa-book-reader"></i> Borrowed Books</a></li>
+        <li><a href="{% url 'home' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+</nav>
+    <main>
+        <div class="card">
+            <h1>User Dashboard</h1>
+            <p style="text-align: center; color: #7f8c8d; font-size: 1.2rem;">
+                <i class="fas fa-user" style="color: #e67e22; margin-right: 0.5rem;"></i>
+                Welcome, User! Start exploring and borrowing books now.
+            </p>
+        </div>
+    </main>
+    <footer>
+        <p> Web Project FCAI</p>
+    </footer>
+</body>
+</html>

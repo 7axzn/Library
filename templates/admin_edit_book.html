@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book - Online Library</title>
+<link rel="stylesheet" href="{% static 'lib/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'lib/css/icon.css' %}"></head>
+<body>
+<nav>
+  <ul>
+    <li><a href="{% url 'add_book' %}">Add Book</a></li>
+    <li><a href="{% url 'admin_showbook' %}">View Books</a></li>
+  </ul>
+</nav>
+
+    <main>
+        <div class="card">
+            <h1>Edit Book</h1>
+            <form method="POST" action="{% url 'edit_book' book.id %}">
+                {% csrf_token %}
+                <label for="book-id">Book ID:</label>
+                <input type="text" name="book-id" id="book-id" value="{{ book.id }}" readonly>
+
+                <label for="book-name">Book Name:</label>
+                <input type="text" name="Name" id="book-name" value="{{ book.Name }}" required>
+
+                <label for="author">Author:</label>
+                <input type="text" name="Author" id="author" value="{{ book.Author }}" required>
+
+                <label for="category">Category:</label>
+                <select name="Category" id="category" required>
+                    <option value="Fiction" {% if book.Category == "Fiction" %}selected{% endif %}>Fiction</option>
+                    <option value="Non-Fiction" {% if book.Category == "Non-Fiction" %}selected{% endif %}>Non-Fiction</option>
+                    <option value="Science" {% if book.Category == "Science" %}selected{% endif %}>Science</option>
+                </select>
+
+                <label for="description">Description:</label>
+                <textarea name="Description" id="description" rows="4" required>{{ book.Description }}</textarea>
+
+                <label for="date-added">Date Added:</label>
+                <input type="date" name="Date_Added" id="date-added" value="{{ book.Date_Added|date:'Y-m-d' }}" required>
+
+                <label for="availability">Availability:</label>
+                <select name="Availability" id="availability" required>
+                    <option value="Available" {% if book.Availability == "Available" %}selected{% endif %}>Available</option>
+                    <option value="Borrowed" {% if book.Availability == "Borrowed" %}selected{% endif %}>Borrowed</option>
+                </select>
+
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p> Web Project FCAI</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Books - Online Library</title>
+<link rel="stylesheet" href="{% static 'lib/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'lib/css/icon.css' %}"></head>
+<body>
+<nav>
+  <ul>
+    <li><a href="{% url 'add_book' %}">Add Book</a></li>
+    <li><a href="{% url 'admin_showbook' %}">View Books</a></li>
+  </ul>
+</nav>
+    <main>
+        <div class="card">
+            <h1>View Books</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                        <th>Availability</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                    <tbody>
+        {% for book in books %}
+        <tr>
+        <td>{{ book.id }}</td>
+        <td>{{ book.Name }}</td>
+        <td>{{ book.Author }}</td>
+        <td>{{ book.Category }}</td>
+        <td>{{ book.Availability }}</td>
+    <td>
+    <a href="{% url 'edit_book' book.id %}">Edit</a>
+
+    <form method="POST" action="{% url 'delete_book' book.id %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" >Delete</button>
+    </form>
+    </td>
+    </tr>
+    {% endfor %}
+</tbody>
+            </table>
+        </div>
+    </main>
+    <footer>
+        <p> Web Project FCAI</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Online Library</title>
+    
+<link rel="stylesheet" href="{% static 'lib/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'lib/css/icon.css' %}"></head>
+<body>
+<nav>
+  <ul>
+    <li><a href="{% url 'add_book' %}">Add Book</a></li>
+    <li><a href="{% url 'admin_showbook' %}">View Books</a></li>
+  </ul>
+</nav>
+
+    <main>
+        <div class="card">
+            <h1>Admin Dashboard</h1>
+            <p style="text-align: center; color: #7f8c8d; font-size: 1.2rem;">
+                <i class="fas fa-user-shield" style="color: #e67e22; margin-right: 0.5rem;"></i>
+                Welcome, Admin! Manage the library with ease.
+            </p>
+        </div>
+    </main>
+    <footer>
+        <p> Web Project FCAI</p>
+    </footer>
+</body>
+</html>

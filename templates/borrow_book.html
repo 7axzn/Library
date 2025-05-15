@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borrow Book - Online Library</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="user_dashboard.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="user_search_books.html"><i class="fas fa-search"></i> Search Books</a></li>
+            <li><a href="user_view_books.html"><i class="fas fa-book"></i> View Books</a></li>
+            <li><a href="user_borrowed_books.html"><i class="fas fa-book-reader"></i> Borrowed Books</a></li>
+            <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="card">
+            <h1>Borrow a Book</h1>
+            <div class="borrow-section">
+                <form id="borrow-form">
+                    <div class="form-group">
+                        <label for="bookId">Enter Book ID:</label>
+                        <input type="text" id="bookId" required placeholder="Enter the book ID you want to borrow">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-book"></i> Borrow Book
+                        </button>
+                        <a href="user_view_books.html" class="btn-secondary">
+                            <i class="fas fa-times"></i> Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Web Project FCAI</p>
+    </footer>
+    <script src="../javaScript/borrow.js"></script>
+</body>
+</html> 

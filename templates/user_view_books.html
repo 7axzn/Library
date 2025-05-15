@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Books - Online Library</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="{% url 'user_dashboard' %}"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="{% url 'search_books' %}"><i class="fas fa-search"></i> Search Books</a></li>
+        <li><a href="{% url 'view_books' %}"><i class="fas fa-book"></i> View Books</a></li>
+        <li><a href="{% url 'borrowed_books' %}"><i class="fas fa-book-reader"></i> Borrowed Books</a></li>
+        <li><a href="{% url 'home' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+</nav>
+
+    <main>
+        <div class="card">
+            <h1>Available Books</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Category</th>
+                        <th>Availability</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                 <tbody>
+    {% for book in books %}
+    <tr>
+        <td>{{ book.id }}</td>
+        <td>{{ book.Name }}</td>
+        <td>{{ book.Author }}</td>
+        <td>{{ book.Category }}</td>
+        <td>{{ book.Availability }}</td>
+<td>
+    <button>Borrow</button>
+    <a href="{% url 'book_details' book.id %}">View Details</a>
+</td>
+    </tr>
+    {% endfor %}
+</tbody>
+            </table>
+        </div>
+    </main>
+    <footer>
+        <p>Web Project FCAI</p>
+    </footer>
+</body>
+</html>

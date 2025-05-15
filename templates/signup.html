@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - Online Library</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/icon.css">
+    <script src="../javaScript/auth.js"></script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="signup.html"><i class="fas fa-user-plus"></i> Signup</a></li>
+            <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="card">
+            <h1>Sign Up</h1>
+            <form id="signup-form">
+                <label for="username">
+                    <i class="fas fa-user"></i> Username
+                </label>
+                <input type="text" id="username" required placeholder="Enter your username">
+                
+                <label for="email">
+                    <i class="fas fa-envelope"></i> Email
+                </label>
+                <input type="email" id="email" required placeholder="Enter your email">
+                
+                <label for="password">
+                    <i class="fas fa-lock"></i> Password
+                </label>
+                <input type="password" id="password" minlength="6" required placeholder="Enter your password">
+                
+                <label for="confirm-password">
+                    <i class="fas fa-lock"></i> Confirm Password
+                </label>
+                <input type="password" id="confirm-password" minlength="6" required placeholder="Confirm your password">
+                <label for="user-type">user-type </label>
+
+                <select name="user-type" id="user-type" required>
+                  <option value="user">user</option>
+                  <option value="admin">admin</option>
+                  
+                </select>
+                
+                <button type="submit"><i class="fas fa-check" style="margin-right: 0.5rem;"></i> Sign Up</button>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p> Web Project FCAI</p>
+    </footer>
+</body>
+</html>
