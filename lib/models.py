@@ -7,4 +7,19 @@ class Book_Details(models.Model):
     Category = models.CharField(max_length=120)
     Description = models.TextField()
     Date_Added = models.DateField()
-    Availability = models.CharField(max_length=120)
+    Availability = models.BooleanField(default=True)
+
+
+
+
+    from django.contrib.auth.models import AbstractUser
+from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+
+class CustomUser(AbstractUser):
+    USER_TYPES = (
+        ('user', 'User'),
+        ('admin', 'Admin'),
+    )
+    user_type = models.CharField(max_length=10, choices=USER_TYPES, default='user')

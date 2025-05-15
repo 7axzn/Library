@@ -1,13 +1,18 @@
 from django.urls import path
 from . import views
 
+
 urlpatterns = [
+
+    path('login/', views.login_view, name='login'),
+    path('', views.login_view, name='login'),
+    path('signup/', views.signup_view, name='signup'),
     path('dashboard/', views.user_dashboard, name='user_dashboard'),
     path('search/', views.search_books, name='search_books'),
     path('view/', views.userShow_book, name='view_books'),
     path('book/<int:book_id>/', views.book_details, name='book_details'),
     path('borrowed/', views.borrowed_books, name='borrowed_books'),
-    path('', views.home, name='home'),
+    
 
     # Admin paths
     path('admin/add/', views.add_book, name='add_book'),

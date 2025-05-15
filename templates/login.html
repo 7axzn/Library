@@ -1,37 +1,56 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - Online Library</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/icon.css">
-    <script src="../javaScript/auth.js"></script>
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/icon.css' %}" />
+    <script src="{% static 'js/auth.js' %}"></script>
+  </head>
+  <body>
     <nav>
-        <ul>
-            <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="signup.html"><i class="fas fa-user-plus"></i> Signup</a></li>
-            <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
-        </ul>
+      <ul>
+        {% comment %}
+        <li>
+          <a href="{% url 'index_view' %}"><i class="fas fa-home"></i> Home</a>
+        </li>
+        {% endcomment %}
+        <li>
+          <a href="{% url 'signup' %}"
+            ><i class="fas fa-user-plus"></i> Signup</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'login' %}"
+            ><i class="fas fa-sign-in-alt"></i> Login</a
+          >
+        </li>
+      </ul>
     </nav>
     <main>
-        <div class="card">
-            <h1>Login</h1>
-            <form id="login-form">
-                <label for="username"><i class="fas fa-user"></i> Username:</label>
-                <input type="text" id="username" required placeholder="Enter your username">
-                
-                <label for="password"><i class="fas fa-lock"></i> Password:</label>
-                <input type="password" id="password" required placeholder="Enter your password">
-                
-                <button type="submit"><i class="fas fa-sign-in-alt" style="margin-right: 0.5rem;"></i> Login</button>
-            </form>
-        </div>
+      <div class="card">
+        <h1>Login</h1>
+        <form method="POST" id="login-form">
+          {% csrf_token %}
+
+          <label for="username"><i class="fas fa-user"></i> Username:</label>
+          <input type="text" name="username" placeholder="Username" required />
+
+          <label for="password"><i class="fas fa-lock"></i> Password:</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
+      </div>
     </main>
     <footer>
-        <p> Web Project FCAI</p>
+      <p>Web Project FCAI</p>
     </footer>
-</body>
+  </body>
 </html>
