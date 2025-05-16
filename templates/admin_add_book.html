@@ -1,64 +1,76 @@
-
-
 {%load static%}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-<link rel="stylesheet" href="{% static 'css/icon.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<link rel="stylesheet" href="{% static 'css/icon.css' %}" />
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add Book - Online Library</title>
-<link rel="stylesheet" href="{% static 'lib/css/style.css' %}">
-<link rel="stylesheet" href="{% static 'lib/css/icon.css' %}">
-
-</head>
-<body>
-<nav>
-  <ul>
+    <link rel="stylesheet" href="{% static 'lib/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'lib/css/icon.css' %}" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+    <li><a href="{% url 'admin_dashboard' %}">home</a></li>
     <li><a href="{% url 'add_book' %}">Add Book</a></li>
     <li><a href="{% url 'admin_showbook' %}">View Books</a></li>
-  </ul>
-</nav>
+    <li><a href="{% url 'index' %}">Logout</a></li>
+      </ul>
+    </nav>
 
     <main>
-        <div class="card">
-            <h1>Add Book</h1>
-            <form method="POST" action="{% url 'add_book' %}">
-    {% csrf_token %}
+      <div class="card">
+        <h1>Add Book</h1>
+        <form method="POST" action="{% url 'add_book' %}">
+          {% csrf_token %}
 
-    <label for="bookName"><i class="fas fa-book"></i> Book Name:</label>
-    <input type="text" id="bookName" name="Name" required>
+          <label for="bookName"><i class="fas fa-book"></i> Book Name:</label>
+          <input type="text" id="bookName" name="Name" required />
 
-    <label for="author"><i class="fas fa-user"></i> Author:</label>
-    <input type="text" id="author" name="Author" required>
+          <label for="author"><i class="fas fa-user"></i> Author:</label>
+          <input type="text" id="author" name="Author" required />
 
-    <label for="category"><i class="fas fa-list"></i> Category:</label>
-    <select id="category" name="Category" required>
-        <option value="Fiction">Fiction</option>
-        <option value="Non-Fiction">Non-Fiction</option>
-        <option value="Science">Science</option>
-    </select>
+          <label for="category"><i class="fas fa-list"></i> Category:</label>
+          <select id="category" name="Category" required>
+            <option value="Fiction">Fiction</option>
+            <option value="Non-Fiction">Non-Fiction</option>
+            <option value="Science">Science</option>
+          </select>
 
-    <label for="description"><i class="fas fa-file-alt"></i> Description:</label>
-    <textarea id="description" name="Description" rows="4" required></textarea>
+          <label for="description"
+            ><i class="fas fa-file-alt"></i> Description:</label
+          >
+          <textarea
+            id="description"
+            name="Description"
+            rows="4"
+            required
+          ></textarea>
 
-    <label for="dateAdded"><i class="fas fa-calendar"></i> Date Added:</label>
-    <input type="date" id="dateAdded" name="Date_Added" required>
+          <label for="dateAdded"
+            ><i class="fas fa-calendar"></i> Date Added:</label
+          >
+          <input type="date" id="dateAdded" name="Date_Added" required />
 
-    <label for="availability"><i class="fas fa-file-alt"></i> Availability:</label>
-    <select id="availability" name="Availability" required>
-        <option value="Available">Available</option>
-        <option value="Borrowed">Borrowed</option>
-    </select>
+          <label for="availability"
+            ><i class="fas fa-file-alt"></i> Availability:</label
+          >
+          <select id="availability" name="Availability" required>
+            <option value="Available">Available</option>
+            <option value="Borrowed">Borrowed</option>
+          </select>
 
-    <button type="submit" id="saveBookBtn"><i class="fas fa-save" style="margin-right: 0.5rem;"></i> Save Book</button>
-</form>
-        </div>
+          <button type="submit" id="saveBookBtn">
+            <i class="fas fa-save" style="margin-right: 0.5rem"></i> Save Book
+          </button>
+        </form>
+      </div>
     </main>
     <footer>
-        <p> Web Project FCAI</p>
+      <p>Web Project FCAI</p>
     </footer>
-</body>
+  </body>
 </html>

@@ -9,7 +9,7 @@ class Book_Details(models.Model):
     Category = models.CharField(max_length=120)
     Description = models.TextField()
     Date_Added = models.DateField()
-    Availability = models.BooleanField(default=True)
+    Availability = models.CharField( max_length=50)
 
 
 

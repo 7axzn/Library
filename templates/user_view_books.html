@@ -43,7 +43,7 @@
         <td>{{ book.Category }}</td>
         <td>{{ book.Availability }}</td>
 <td>
-    <button>Borrow</button>
+    <a href="{% url 'borrow_book' book.id %}">Borrow</a>
     <a href="{% url 'book_details' book.id %}">View Details</a>
 </td>
     </tr>
