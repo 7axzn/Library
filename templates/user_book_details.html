@@ -48,22 +48,22 @@
             <strong><i class="fas fa-id-badge"></i> ID:</strong> {{ book.id }}
           </p>
           <p>
-            <strong><i class="fas fa-user"></i> Author:</strong> {{ book.Author
-            }}
+            <strong><i class="fas fa-user"></i> Author:</strong> {{ book.Author}}
           </p>
           <p>
-            <strong><i class="fas fa-list"></i> Category:</strong> {{
-            book.Category }}
+            <strong><i class="fas fa-list"></i> Category:</strong> 
+            {{book.Category }}
           </p>
           <p>
-            <strong><i class="fas fa-file-alt"></i> Description:</strong> {{
-            book.Description }}
+            <strong><i class="fas fa-file-alt"></i> Description:</strong> {{book.Description }}
           </p>
           <p>
             <strong><i class="fas fa-check-circle"></i> Availability:</strong>
             {{ book.Availability }}
           </p>
-        </div>
+    </div>
+
+        {% if book.Availability == "Available" %}
         <form method="POST" action="{% url 'borrow_book' book.id %}">
           {% csrf_token %}
           <button type="submit">
@@ -72,6 +72,8 @@
           </button>
         </form>
       </div>
+          {%endif%}
+
     </main>
     <footer>
       <p>Web Project FCAI</p>

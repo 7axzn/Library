@@ -63,13 +63,10 @@
               <td>{{ book.Category }}</td>
               <td>{{ book.Availability }}</td>
               <td>
-                {% comment %}
-                <form method="POST" action="{% url 'borrow_book' book.id %}">
-                  {% csrf_token %} {% endcomment %}
+                <form method="POST" action="{% url 'return_book' book.id %}">
+                  {% csrf_token %} 
                   <button type="submit">return</button>
-                  {% comment %}
                 </form>
-                {% endcomment %}
               </td>
             </tr>
             {% endfor %} {% else %}

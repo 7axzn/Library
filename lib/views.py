@@ -9,6 +9,8 @@ from django.contrib import messages
 
 from django.contrib.auth import authenticate, login ,logout
 from .models import CustomUser
+from django.contrib.auth import get_user_model
+
 
 
 
@@ -98,7 +100,6 @@ def borrowed_books(request):
     books = request.user.borrowed_books.all() if request.user.is_authenticated else []
     return render(request, 'user_borrowed_books.html', {'borrowed_books': books})
 
-from django.contrib.auth import get_user_model
 User = get_user_model()
 
 def borrow_book(request, book_id):
@@ -122,6 +123,26 @@ def borrow_book(request, book_id):
 
     return redirect('user_view_book')
 
+def return_book(request, book_id):
+    if request.method == "POST":
+        book = get_object_or_404(Book_Details, id=book_id)
+
+        if book in request.user.borrowed_books.all():
+            book.Availability = 'Available'
+            book.save()
+
+            user = request.user
+            user.borrowed_books.remove(book)  
+            user.save()
+
+            messages.success(request, f"Successfully returned {book.Name}")
+            return redirect('borrowed_books')
+
+        else:
+            messages.error(request, "You have not borrowed this book")
+            return redirect('book_details', book_id=book_id)
+
+    return redirect('user_view_book')
 # ADMIN VIEWS
 
 def add_book(request):
@@ -185,7 +206,6 @@ def delete_book(request, book_id):
     book = get_object_or_404(Book_Details, id=book_id)
     book.delete()
     return redirect('admin_showbook')
-
 
 
 def admin_dashboard(request):
