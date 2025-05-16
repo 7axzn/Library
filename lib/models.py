@@ -13,11 +13,10 @@ class Book_Details(models.Model):
 
 
 
-
-
 class CustomUser(AbstractUser):
     USER_TYPES = (
         ('user', 'User'),
         ('admin', 'Admin'),
     )
-    user_type = models.CharField(max_length=10, choices=USER_TYPES, default='user')
+    user_type = models.CharField(max_length=10, choices=USER_TYPES)
+    borrowed_books = models.ManyToManyField('Book_Details', blank=True) 

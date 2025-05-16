@@ -1,72 +1,125 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-<link rel="stylesheet" href="{% static 'css/icon.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<link rel="stylesheet" href="{% static 'css/icon.css' %}" />
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Search Books - Online Library</title>
     <link rel="stylesheet" href="../css/style.css" />
-</head>
-<body>
-<nav>
-    <ul>
-        <li><a href="{% url 'user_dashboard' %}"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="{% url 'search_books' %}"><i class="fas fa-search"></i> Search Books</a></li>
-        <li><a href="{% url 'view_books' %}"><i class="fas fa-book"></i> View Books</a></li>
-        <li><a href="{% url 'borrowed_books' %}"><i class="fas fa-book-reader"></i> Borrowed Books</a></li>
-        <li><a href="{% url 'index' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-    </ul>
-</nav>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <a href="{% url 'user_dashboard' %}"
+            ><i class="fas fa-home"></i> Home</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'search_books' %}"
+            ><i class="fas fa-search"></i> Search Books</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'view_books' %}"
+            ><i class="fas fa-book"></i> View Books</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'borrowed_books' %}"
+            ><i class="fas fa-book-reader"></i> Borrowed Books</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'index' %}"
+            ><i class="fas fa-sign-out-alt"></i> Logout</a
+          >
+        </li>
+      </ul>
+    </nav>
 
     <main>
-        <div class="card">
-            <h1>Search Books</h1>
-            <form method="GET" action="{% url 'search_books' %}">
-                <label for="search-title"><i class="fas fa-book"></i> Search by Title or Author:</label>
-                <input
-                    type="text"
-                    id="search-title"
-                    name="q"
-                    placeholder="Enter book title or author"
-                    value="{{ query|default:'' }}"
-                    required
-                />
-                <button type="submit">
-                    <i class="fas fa-search" style="margin-right: 0.5rem;"></i> Search
-                </button>
-            </form>
+      <div class="card">
+        <h1>Search Books</h1>
+        <form method="GET" action="{% url 'search_books' %}">
+          <label for="search-title"
+            ><i class="fas fa-book"></i> Search by Title or Author:</label
+          >
+          <input
+            type="text"
+            id="search-title"
+            name="q"
+            placeholder="Enter book title or author"
+            value="{{ query|default:'' }}"
+            required
+          />
+          <button type="submit">
+            <i class="fas fa-search" style="margin-right: 0.5rem"></i> Search
+          </button>
+        </form>
 
-            {% if query %}
-            <h2>Results for "{{ query }}"</h2>
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Author</th>
-                    <th>Category</th>
-                    <th>Availability</th>
-                </tr>
-                {% if results %}
-                    {% for book in results %}
-                    <tr>
-                        <td>{{ book.id }}</td>
-                        <td>{{ book.Name }}</td>
-                        <td>{{ book.Author }}</td>
-                        <td>{{ book.Category }}</td>
-                        <td>{{ book.Availability }}</td>
-                    </tr>
-                    {% endfor %}
-                {% else %}
-                    <tr><td colspan="5">No books found.</td></tr>
-                {% endif %}
-            </table>
-            {% endif %}
-        </div>
+        {% if query %}
+        <h2>Results for "{{ query }}"</h2>
+        <table>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Availability</th>
+          </tr>
+          {% if results %} {% for book in results %}
+          <tr>
+            <td>{{ book.id }}</td>
+            <td>{{ book.Name }}</td>
+            <td>{{ book.Author }}</td>
+            <td>{{ book.Category }}</td>
+            <td>{{ book.Availability }}</td>
+          </tr>
+          {% endfor %} {% else %}
+          <tr>
+            <td colspan="5">No books found.</td>
+          </tr>
+          {% endif %}
+        </table>
+        {% endif %}
+      </div>
     </main>
     <footer>
-        <p>Web Project FCAI</p>
+      <p>Web Project FCAI</p>
     </footer>
-</body>
+
+    {% if messages %}
+    <div
+      id="django-messages"
+      style="position: fixed; top: 20px; right: 20px; z-index: 9999"
+    >
+      {% for message in messages %}
+      <div
+        class="alert"
+        style="
+          background: #f8d7da;
+          color: #721c24;
+          padding: 10px 20px;
+          margin-bottom: 10px;
+          border-radius: 5px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        "
+      >
+        {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    <script>
+      setTimeout(function () {
+        var msgDiv = document.getElementById("django-messages");
+        if (msgDiv) {
+          msgDiv.style.display = "none";
+        }
+      }, 3500);
+    </script>
+    {% endif %}
+  </body>
 </html>

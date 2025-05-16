@@ -1,44 +1,112 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-<link rel="stylesheet" href="{% static 'css/icon.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<link rel="stylesheet" href="{% static 'css/icon.css' %}" />
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Details - Online Library</title>
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-<nav>
-    <ul>
-        <li><a href="{% url 'user_dashboard' %}"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="{% url 'search_books' %}"><i class="fas fa-search"></i> Search Books</a></li>
-        <li><a href="{% url 'view_books' %}"><i class="fas fa-book"></i> View Books</a></li>
-        <li><a href="{% url 'borrowed_books' %}"><i class="fas fa-book-reader"></i> Borrowed Books</a></li>
-        <li><a href="{% url 'index' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-    </ul>
-</nav>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <a href="{% url 'user_dashboard' %}"
+            ><i class="fas fa-home"></i> Home</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'search_books' %}"
+            ><i class="fas fa-search"></i> Search Books</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'view_books' %}"
+            ><i class="fas fa-book"></i> View Books</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'borrowed_books' %}"
+            ><i class="fas fa-book-reader"></i> Borrowed Books</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'index' %}"
+            ><i class="fas fa-sign-out-alt"></i> Logout</a
+          >
+        </li>
+      </ul>
+    </nav>
     <main>
-        <div class="card">
-            <h1>Book Details</h1>
-            <div style="margin-bottom: 2rem;">
-               <h2 id="book-title">{{ book.Name }}</h2>
-                <p><strong><i class="fas fa-id-badge"></i> ID:</strong> {{ book.id }}</p>
-                <p><strong><i class="fas fa-user"></i> Author:</strong> {{ book.Author }}</p>
-                <p><strong><i class="fas fa-list"></i> Category:</strong> {{ book.Category }}</p>
-                <p><strong><i class="fas fa-file-alt"></i> Description:</strong> {{ book.Description }}</p>
-                <p><strong><i class="fas fa-check-circle"></i> Availability:</strong> {{ book.Availability }}</p>
-            </div>
-            <form>
-                <button type="submit"><i class="fas fa-book-reader" style="margin-right: 0.5rem;"></i> Borrow Book</button>
-            </form>
+      <div class="card">
+        <h1>Book Details</h1>
+        <div style="margin-bottom: 2rem">
+          <h2 id="book-title">{{ book.Name }}</h2>
+          <p>
+            <strong><i class="fas fa-id-badge"></i> ID:</strong> {{ book.id }}
+          </p>
+          <p>
+            <strong><i class="fas fa-user"></i> Author:</strong> {{ book.Author
+            }}
+          </p>
+          <p>
+            <strong><i class="fas fa-list"></i> Category:</strong> {{
+            book.Category }}
+          </p>
+          <p>
+            <strong><i class="fas fa-file-alt"></i> Description:</strong> {{
+            book.Description }}
+          </p>
+          <p>
+            <strong><i class="fas fa-check-circle"></i> Availability:</strong>
+            {{ book.Availability }}
+          </p>
         </div>
+        <form method="POST" action="{% url 'borrow_book' book.id %}">
+          {% csrf_token %}
+          <button type="submit">
+            <i class="fas fa-book-reader" style="margin-right: 0.5rem"></i>
+            Borrow Book
+          </button>
+        </form>
+      </div>
     </main>
     <footer>
-        <p> Web Project FCAI</p>
+      <p>Web Project FCAI</p>
     </footer>
     <script src="../javaScript/book_details.js"></script>
 
-</body>
+    {% if messages %}
+    <div
+      id="django-messages"
+      style="position: fixed; top: 20px; right: 20px; z-index: 9999"
+    >
+      {% for message in messages %}
+      <div
+        class="alert"
+        style="
+          background: #f8d7da;
+          color: #721c24;
+          padding: 10px 20px;
+          margin-bottom: 10px;
+          border-radius: 5px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        "
+      >
+        {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    <script>
+      setTimeout(function () {
+        var msgDiv = document.getElementById("django-messages");
+        if (msgDiv) {
+          msgDiv.style.display = "none";
+        }
+      }, 3500);
+    </script>
+    {% endif %}
+  </body>
 </html>

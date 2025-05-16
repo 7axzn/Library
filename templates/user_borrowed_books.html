@@ -1,49 +1,121 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-<link rel="stylesheet" href="{% static 'css/icon.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<link rel="stylesheet" href="{% static 'css/icon.css' %}" />
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Borrowed Books - Online Library</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-</head>
-<body>
-<nav>
-    <ul>
-        <li><a href="{% url 'user_dashboard' %}"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="{% url 'search_books' %}"><i class="fas fa-search"></i> Search Books</a></li>
-        <li><a href="{% url 'view_books' %}"><i class="fas fa-book"></i> View Books</a></li>
-        <li><a href="{% url 'borrowed_books' %}"><i class="fas fa-book-reader"></i> Borrowed Books</a></li>
-        <li><a href="{% url 'index' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-    </ul>
-</nav>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <a href="{% url 'user_dashboard' %}"
+            ><i class="fas fa-home"></i> Home</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'search_books' %}"
+            ><i class="fas fa-search"></i> Search Books</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'view_books' %}"
+            ><i class="fas fa-book"></i> View Books</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'borrowed_books' %}"
+            ><i class="fas fa-book-reader"></i> Borrowed Books</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'index' %}"
+            ><i class="fas fa-sign-out-alt"></i> Logout</a
+          >
+        </li>
+      </ul>
+    </nav>
     <main>
-        <div class="card">
-            <h1>Your Borrowed Books</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Author</th>
-                        <th>Category</th>
-                        <th>Availability</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Books will be dynamically added here -->
-                </tbody>
-            </table>
-        </div>
+      <div class="card">
+        <h1>Your Borrowed Books</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Author</th>
+              <th>Category</th>
+              <th>Availability</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if borrowed_books %} {% for book in borrowed_books %}
+            <tr>
+              <td>{{ book.id }}</td>
+              <td>{{ book.Name }}</td>
+              <td>{{ book.Author }}</td>
+              <td>{{ book.Category }}</td>
+              <td>{{ book.Availability }}</td>
+              <td>
+                {% comment %}
+                <form method="POST" action="{% url 'borrow_book' book.id %}">
+                  {% csrf_token %} {% endcomment %}
+                  <button type="submit">return</button>
+                  {% comment %}
+                </form>
+                {% endcomment %}
+              </td>
+            </tr>
+            {% endfor %} {% else %}
+            <tr>
+              <td colspan="6" style="text-align: center; color: #888">
+                You have not borrowed any books yet.
+              </td>
+            </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
     </main>
     <footer>
-        <p> Web Project FCAI</p>
+      <p>Web Project FCAI</p>
     </footer>
 
-    <script src="../javaScript/userBorrowedBooks.js"></script>
-</body>
+    {% if messages %}
+    <div
+      id="django-messages"
+      style="position: fixed; top: 20px; right: 20px; z-index: 9999"
+    >
+      {% for message in messages %}
+      <div
+        class="alert"
+        style="
+          background: #f8d7da;
+          color: #721c24;
+          padding: 10px 20px;
+          margin-bottom: 10px;
+          border-radius: 5px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        "
+      >
+        {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    <script>
+      setTimeout(function () {
+        var msgDiv = document.getElementById("django-messages");
+        if (msgDiv) {
+          msgDiv.style.display = "none";
+        }
+      }, 3500);
+    </script>
+    {% endif %}
+  </body>
 </html>

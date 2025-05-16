@@ -13,6 +13,7 @@ urlpatterns = [
     path('view/', views.userShow_book, name='view_books'),
     path('book/<int:book_id>/', views.book_details, name='book_details'),
     path('borrowed/', views.borrowed_books, name='borrowed_books'),
+    path('borrow/<int:book_id>/', views.borrow_book, name='borrow_book'),
     
 
     # Admin paths

@@ -1,6 +1,6 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-<link rel="stylesheet" href="{% static 'css/icon.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<link rel="stylesheet" href="{% static 'css/icon.css' %}" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +34,7 @@
             ><i class="fas fa-book-reader"></i> Borrowed Books</a
           >
         </li>
-        
+
         <li>
           <a href="{% url 'index' %}"
             ><i class="fas fa-sign-out-alt"></i> Logout</a
@@ -57,5 +57,36 @@
     <footer>
       <p>Web Project FCAI</p>
     </footer>
+
+    {% if messages %}
+    <div
+      id="django-messages"
+      style="position: fixed; top: 20px; right: 20px; z-index: 9999"
+    >
+      {% for message in messages %}
+      <div
+        class="alert"
+        style="
+          background: #f8d7da;
+          color: #721c24;
+          padding: 10px 20px;
+          margin-bottom: 10px;
+          border-radius: 5px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        "
+      >
+        {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    <script>
+      setTimeout(function () {
+        var msgDiv = document.getElementById("django-messages");
+        if (msgDiv) {
+          msgDiv.style.display = "none";
+        }
+      }, 3500);
+    </script>
+    {% endif %}
   </body>
 </html>
