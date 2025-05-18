@@ -13,6 +13,7 @@ from django.contrib.auth import get_user_model
 
 from django.http import JsonResponse
 
+from django.db.models import Q
 
 
 
@@ -74,12 +75,17 @@ def userShow_book(request):  # View books
     books = Book_Details.objects.all()
     return render(request, 'user_view_books.html', {'books': books})
 
+
 def search_books(request):
-    query = request.GET.get('q', '')
+    query = request.GET.get('q', '').strip()
     results = []
     if query:
         results = Book_Details.objects.filter(
-            Q(Name__icontains=query) | Q(Author__icontains=query)
+            Q(Name__icontains=query) |
+            Q(Author__icontains=query) |
+            Q(Category__icontains=query) |
+            Q(Description__icontains=query) |
+            Q(Availability__icontains=query)
         )
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         data = list(results.values('id', 'Name', 'Author', 'Category', 'Availability'))
@@ -88,7 +94,6 @@ def search_books(request):
         'query': query,
         'results': results,
     })
-
 
 def book_details(request, book_id):
     book = get_object_or_404(Book_Details, id=book_id)

@@ -126,7 +126,7 @@
 document.querySelector("form").addEventListener("submit", function (e) {
   e.preventDefault();
   const query = document.querySelector("#search-title").value;
-  fetch(`/search/?q=${encodeURIComponent(query)}`, {
+  fetch(`/library/search/?q=${encodeURIComponent(query)}`, {
     headers: {
       "X-Requested-With": "XMLHttpRequest"
     }
