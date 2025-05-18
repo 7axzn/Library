@@ -134,5 +134,5 @@ AUTH_USER_MODEL = 'lib.CustomUser'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'library/static'),
+    os.path.join(BASE_DIR, 'Library/static'),
 ]

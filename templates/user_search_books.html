@@ -121,5 +121,43 @@
       }, 3500);
     </script>
     {% endif %}
-  </body>
+  
+<script>
+document.querySelector("form").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const query = document.querySelector("#search-title").value;
+  fetch(`/search/?q=${encodeURIComponent(query)}`, {
+    headers: {
+      "X-Requested-With": "XMLHttpRequest"
+    }
+  })
+    .then(response => response.json())
+    .then(data => {
+      const table = document.createElement("table");
+      table.innerHTML = `
+        <tr>
+          <th>ID</th><th>Name</th><th>Author</th><th>Category</th><th>Availability</th>
+        </tr>`;
+      if (data.results.length > 0) {
+        data.results.forEach(book => {
+          table.innerHTML += `
+            <tr>
+              <td>${book.id}</td>
+              <td>${book.Name}</td>
+              <td>${book.Author}</td>
+              <td>${book.Category}</td>
+              <td>${book.Availability}</td>
+            </tr>`;
+        });
+      } else {
+        table.innerHTML += `<tr><td colspan="5">No books found.</td></tr>`;
+      }
+      const resultsContainer = document.querySelector("main .card");
+      resultsContainer.querySelector("table")?.remove();
+      resultsContainer.appendChild(table);
+    });
+});
+</script>
+
+</body>
 </html>

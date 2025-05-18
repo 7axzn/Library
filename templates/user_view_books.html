@@ -110,5 +110,29 @@
       }, 3500);
     </script>
     {% endif %}
-  </body>
+  
+<script>
+document.querySelectorAll("form[action*='borrow']").forEach(form => {
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const url = this.action;
+    const csrfToken = this.querySelector("[name=csrfmiddlewaretoken]").value;
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "X-CSRFToken": csrfToken,
+        "X-Requested-With": "XMLHttpRequest"
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        alert(data.message);
+        if (data.success) location.reload();
+      });
+  });
+});
+</script>
+
+</body>
 </html>
